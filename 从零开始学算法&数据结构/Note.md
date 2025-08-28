@@ -120,3 +120,21 @@ def binary_search(list, val):
 - 所以二分查找比线性查找的效率高
 
 - python的内置列表函数：index()就是线性查找，没有用二分查找，主要是二分查找的输入列表一定要是有序列表；
+
+2.3 列表排序：
+- 排序：将一组**无序**的记录序列调整为**有序**的记录序列；
+    - 输入：列表
+    - 输出：有序列表
+- 升序与降序
+- 内置排序函数：sort()
+
+2.4 冒泡排序(Bubble Sort)
+- 列表每两个相邻的数，如果前面比后面大，则交换这两个数；
+```python
+def bubble_sort(list):
+    for i in range(len(list)-1):
+        for j in range(len(list)-i-1):
+            if list[j] > list[j+1]:
+                list[j], list[j+1] = list[j+1], list[j] # 交换
+```
+- 时间复杂度是 ：O(n^2) 
