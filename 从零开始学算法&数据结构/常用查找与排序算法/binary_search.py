@@ -4,7 +4,7 @@ def binary_search(list, val):
     while left <= right:      #说明候选区域有值存在
         mid = (left+right)//2 # mid 就是候选区中间的值
         if list[mid] == val:
-            return mid
+            return list
         elif list[mid] > val: # 说明val在mid的左边
             right = mid - 1   # 要把right移动到mid的左边
         else:                 # list[mid] < val说明val在mid的右边
