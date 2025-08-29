@@ -138,3 +138,32 @@ def bubble_sort(list):
                 list[j], list[j+1] = list[j+1], list[j] # 交换
 ```
 - 时间复杂度是 ：O(n^2) 
+
+2.5 选择排序(Selection Sort)
+- 每次从无序列表中选择最小的元素，放到有序列表的末尾；
+```python
+def select_sort_simple(list):
+    list_result = []
+    for i in range(len(list)):
+        min_vla = min(list)
+        list_result.append(min_vla) # 按值添加
+        list.remove(min_vla) # 按值删除
+    return list_result
+```
+- 这个算法有致命缺点：
+  - 空间复杂度翻倍，用了两个列表
+  - remove()函数的时间复杂度是O(n)，所以这个算法的时间复杂度是O(n^2) + O(n^2) = O(n^2)，**时间复杂度非常的高**
+
+- 改进版选择排序
+```python 
+def select_sort(list):
+    for i in range(len(list)-1):
+        min_loc = i # 最小值位置
+        for j in range(i, len(list)):
+            if list[j] < list[min_loc]:
+                min_loc = j
+        list[i], list[min_loc] = list[min_loc], list[i] # 交换
+    return list
+```
+- 算法关键点：有序区和无序区`range(i, len(list))`、无序区最小数的位置`min_loc`
+- 这个改进版的时间复杂度就是 **O(n^2)**
