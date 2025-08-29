@@ -159,10 +159,10 @@ def select_sort_simple(list):
 def select_sort(list):
     for i in range(len(list)-1):
         min_loc = i # 最小值位置
-        for j in range(i, len(list)):
+        for j in range(i, len(list)): # 为了找到无序区的最小值
             if list[j] < list[min_loc]:
                 min_loc = j
-        list[i], list[min_loc] = list[min_loc], list[i] # 交换
+        list[i], list[min_loc] = list[min_loc], list[i] # 交换最小值和这个队列的第一个值
     return list
 ```
 - 算法关键点：有序区和无序区`range(i, len(list))`、无序区最小数的位置`min_loc`
