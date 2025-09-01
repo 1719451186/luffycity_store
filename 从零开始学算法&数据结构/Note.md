@@ -167,3 +167,18 @@ def select_sort(list):
 ```
 - 算法关键点：有序区和无序区`range(i, len(list))`、无序区最小数的位置`min_loc`
 - 这个改进版的时间复杂度就是 **O(n^2)**
+
+2.9 插入排序(insert_sort)
+- 通过按顺序将无序区的元素插入到有序区中
+``` python
+def insert_sort(ls):
+    for i in range(1, len(ls)): # i 表示摸到的牌的下标
+        j = i-1 # j 表示手里牌的下标
+        tmp = ls[i]
+        while ls[j] > tmp and j>= 0:
+            ls[j+1] = ls[j]
+            j -= 1
+        ls[j+1] = tmp
+        print(ls)
+```
+- 时间复杂度为：O(n^2)
