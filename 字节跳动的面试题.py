@@ -1,3 +1,5 @@
+def list_to_dic(list):
+    return {item: "test" for item in list}
 
 def bubble_sort(ls, IF_BUB = 0):
     list_result = []
@@ -13,4 +15,6 @@ def bubble_sort(ls, IF_BUB = 0):
     elif IF_BUB == 0:
         return sorted(list_result)
 
-print(bubble_sort([5,3,2,8,1,4]))  # [2,4,8]
+list_1= [5,3,2,8,1,4]
+
+print(list_to_dic(bubble_sort(list_1, IF_BUB=0)))
