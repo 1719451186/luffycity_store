@@ -180,5 +180,41 @@ def insert_sort(ls):
             j -= 1
         ls[j+1] = tmp
         print(ls)
+        
 ```
 - 时间复杂度为：O(n^2)
+
+2.10 快速排序法(quick_sort)
+- 思路：
+    - 取第一个元素p，是元素p归为
+    - 列表被p分为两部分，左边比p小，右边比p大
+    - 递归完成排序
+- 这是一个对称的代码，比较好背，一个while套着两个while
+``` python
+def partition(ls,left,right):
+    tmp = ls[left] # 设定基准值（pivot）
+    while left < right:
+        while ls[right] >= tmp and left < right:
+            right -= 1
+        ls[left] = ls[right]
+        while ls[left] <= tmp and left < right:
+            left += 1
+        ls[right] = ls[left]
+    ls[left] = tmp
+
+def quick_sort(ls, left, right):
+    if left < right:
+        mid = partition(ls, left, right)
+        quick_sort(ls, left, mid - 1)
+        quick_sort(ls, mid + 1, right)
+```
+- 快速排序的效率
+    - 时间复杂度： O(nlogn) # 比冒泡排序要快，冒泡排序的时间复杂度是n^2
+- 问题：
+    - 递归的问题， 递归最大深度，最大深度可以改，但是会消耗超级多的系统资源；
+    - 快速排序有一个最坏情况出现：
+        - list = [9,8,7,6,5,4,3,1]  ;
+        - 每次都只排序一个数，这样时间复杂度就扩大成为了n^2;
+
+
+
