@@ -19,4 +19,4 @@ def sift(ls, low, high):
             ls[i] = tmp # 把tmp放到i的位置上面去, 等于是把tmp放到了一个子堆甚至整个堆的堆顶
             break
     else:
-        ls[i] = tmp
+        ls[i] = tmp #
