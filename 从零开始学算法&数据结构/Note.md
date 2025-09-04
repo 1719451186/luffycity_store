@@ -335,4 +335,65 @@ for i in range(len(li)):
   - 排序LowB三人组（冒泡、插入、选择） (时间复杂度： O(k*n))
   - 在序列中，取k个值，弄个小根堆，用小根堆的顶端值，对比第k+1个值，然后要是k+1的这个值比顶端值大，替换，然后做一个向下调整；
   - 时间复杂度（O(n*logk)
-  - 
+
+2.19 归并
+- 假设现在的列表分两段有序，如何将其合成为一个有序列表呢？？？
+    - 左右依次拿出值，对比，谁小谁拿出来，最后，有一边没了，那么剩下的直接放到后面
+- 实现归并这个环节的代码：
+```python
+def merge(ls, low, mid, high):
+    '''
+    low - mid 就是前半段有序序列
+    mid - high 就是后半段有序序列
+    '''
+    i = low
+    j = mid + 1
+    ltmp = []
+    while i <= mid and j <= high:
+        if ls[i] < li[j]:
+            ltmp.append(ls[i])
+            i += 1
+        else:
+            ltmp.append(ls[j])
+            j += 1
+    while i <= mid:
+        ltmp.append(ls[i])
+        i += 1
+    while j <= high:
+        ltmp.append(ls[j])
+        j += 1
+    li[low:high+1] = ltmp
+```
+
+2.20 归并排序：
+- 分解：将列表越分越小，直至分成一个元素
+- 一个元素，肯定有序
+- 然后合并各个小的有序列表
+```python
+def merge_sort(ls, low, high):
+    if low < high :
+        mid = (low+high)//2
+        merge_sort(ls, low, mid) 
+        merge_sort(ls, mid+1, high)
+        merge(ls, low, mid, high)
+```
+- 这里使用了递归的思想
+- 时间复杂度：归并就是 （O(n*logn)）
+
+
+
+2.21 NB仨人组总结（归并、快排、堆排）
+
+- O(n*logn)
+- 速度：
+    - 快排 > 归并 > 堆排
+- 缺点：
+    - 快排：极端情况下排序效率很低
+    - 归并排序：需要额外的内存开销(ltmp = [])
+    - 堆排序：相对较慢
+- ![排序小结](.\img\排序小结.png)
+
+2.22 希尔排序：
+
+- 是插入排序的一种变形，可以叫做分组插入排序算法
+- 
