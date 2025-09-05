@@ -396,4 +396,25 @@ def merge_sort(ls, low, high):
 2.22 希尔排序：
 
 - 是插入排序的一种变形，可以叫做分组插入排序算法
-- 
+- n = 列表长度/2，那么就把列表分n组，把每组分别做插入排序，然后回到正常的列表
+- 再取m = n/2 ， 再弄一次上面这个过程，然后就好了
+- 最后直到，分成1组
+- 实现代码
+```python
+def insert_sort(ls, gap):
+    for i in range(gap, len(ls)): # i 表示摸到的牌的下标
+        j = i-gap # j 表示手里牌的下标
+        tmp = ls[i]
+        while j>= 0 and ls[j] > tmp:
+            ls[j+gap] = ls[j]
+            j -= gap
+        ls[j+gap] = tmp
+
+def shell_sort(ls):
+    gap = len(ls) // 2
+    while gap >= 1:
+        insert_sort(ls, gap)
+        gap = gap // 2
+        
+```
+- 希尔排序的时间复杂度非常复杂，最坏情况是O(n^2)，最好情况是O(nlogn)，平均情况(其实不太好说)是O(n^1.3)
