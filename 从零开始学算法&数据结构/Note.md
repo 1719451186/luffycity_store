@@ -418,3 +418,20 @@ def shell_sort(ls):
         
 ```
 - 希尔排序的时间复杂度非常复杂，最坏情况是O(n^2)，最好情况是O(nlogn)，平均情况(其实不太好说)是O(n^1.3)
+
+2.23 计数排序(Counting Sort)
+- 已知，列表中的数都在 0-100，设计时间复杂度为O(n)的排序算法;
+```python
+def count_sort(li, max_count = 100):
+    count = [0 for _ in range(max_count+1)] # 长度为max_count+1的值为0的计数列表
+    for val in li:
+        count[val] += 1
+    li.clear()
+    for ind, val in enumerate(count):
+        for i in range(val):
+            li.append(ind) # 把ind添加val次
+```
+- 时间复杂度：O(n)
+- 计数排序是有限制的
+    - 只能对整数排序
+    - 只能对范围不大的整数排序
