@@ -435,3 +435,47 @@ def count_sort(li, max_count = 100):
 - 计数排序是有限制的
     - 只能对整数排序
     - 只能对范围不大的整数排序
+
+2.24 桶排序(Bucket Sort)
+- 在计数排序中，如果元素的范围超级无敌大，1-1个亿；
+- 将元素分在不同的桶中，再队每个桶中的元素进行排序；
+```python
+def buket_sort(li, n = 100, max_num = 10000):
+    # n个桶，最大的数是10000
+    buckets = [[] for _ in range(n)] # 创建n个空桶
+    for var in li:
+        i = min(var // (max_num // n), n-1) # 计算var应该放入哪个桶
+        buckets[i].append(var)
+        # 这里借鉴冒泡排序进行排序
+        for j in range(len(buckets[i])-1, 0, -1):
+            if buckets[i][j] < buckets[i][j-1]:
+                buckets[i][j], buckets[i][j-1] = buckets[i][j-1], buckets[i][j]
+            else:
+                break
+    sorted_result = []
+    for bucket in buckets:
+        sorted_result.extend(bucket)
+    return sorted_result
+```
+- 桶排序的表现取决于数据的分布情况
+- 时间复杂度：O(n+k)  k是桶的个数
+
+2.25  基数排序(Radix Sort)
+- 多关键词排序（两个排序标准，就是两列数，先对A排，在对B排）
+- [12, 34, 56, 78, 90, 11, 22, 33, 44, 55]
+- 先对个位数排序，再对十位数排序，这就变成了多关键词排序了，就跟桶排序类似了
+```python
+def redix_sort(li):
+    max_num = max(li)
+    iter = 0 # 迭代次数
+    while 10**iter < max_num:
+        bucket = [[] for _ in range(10)] # 十个桶
+        for val in li:
+            digit = val // (10**iter) % 10
+            bucket[digit].append(val)
+        li.clear()
+        for buc in bucket:
+            li.extend(buc)
+        iter += 1
+```
+- 时间复杂度：O(k*n)  
