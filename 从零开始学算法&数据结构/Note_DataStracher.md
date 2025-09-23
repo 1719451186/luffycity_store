@@ -51,3 +51,23 @@
   - 从一个节点开始，找所有能走的点，然后再从这些点出发，找所有能走的点；
   - 用队列来保存走过的路径；
   - 这个路径是最短的；
+
+1.6 链表(Linked List)：
+- 链表是一种线性表，但它的存储不是顺序的，而是通过节点与节点之间的指针链接起来的；
+- 链表的创建：
+  - 头插法：每次都在链表的头部插入新的节点；
+  - 尾插法：每次都在链表的尾部插入新的节点；
+- 链表的遍历
+```python
+def print_linklist(lk):
+    while lk:
+        print(lk.item, end=",")
+        lk = lk.next
+```
+- 链表节点的插入
+  - p.next = curNode.next
+  - curNode.next = p
+- 链表节点的删除
+  - p = curNode.next
+  - curNode.next = curNode.next.next
+  - del p
